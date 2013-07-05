@@ -3,22 +3,22 @@ import subprocess
 from os import listdir
 import sys
 
-if len(sys.argv) < 2:
-	sys.stderr.write("need directory path\n")
+if len(sys.argv) < 3:
+	sys.stderr.write("need directory path and node name to replace value\n")
 	
 else:
 	dir=sys.argv[1]
 	flist = listdir(dir)
+	nodeName = sys.argv[2]
 
 	for f in flist:
 		print "replacing... " + f
 		path = dir + '/' + f
-		before = '"timestamp":\s*"[0-9]*"'
-		after = '"timestamp":"anytime"'
+        before = '"' + nodeName + '":\s*"[^"]*"'
+        after = '"' + nodeName + '":"anything"'
 		subprocess.call(['sed','-i','s/' + before + '/' + after + '/g', path])
 
 #		before = '"goods_sub_image_list":"[^"]*",' # sed is not supporting non-greedy regex, use [^] pattern
-#		subprocess.call(['sed','-i','s/' + before + '/' + after + '/g', path])
 #		subprocess.call(['sed','-i','s/' + before + '/' + after + '/g', path])
 
 
