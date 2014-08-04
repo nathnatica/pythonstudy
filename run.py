@@ -105,7 +105,7 @@ def fibonacci(max):
 ################## function
 def divide(a,b):
     q = a // b  # is truncating division
-    r = a = q*b
+    r = a - q*b
     return q,r  # returns tuple
 
 quotiet, remainder = divide(1000, 22)
@@ -117,7 +117,6 @@ def foo():
     a = 4.1     # change the global variable
 
 
-    
     
 sys.exit()
 # or use
